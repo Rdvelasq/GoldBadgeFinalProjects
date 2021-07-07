@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Claim_POCO
 {
-    public class Class1
+    public enum ClaimType
     {
+        Car = 1,
+        Home,
+        Theft,
     }
 }
