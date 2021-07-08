@@ -15,6 +15,10 @@ namespace Claim_POCO
         public DateTime DateOfIncident { get; set; }
         public DateTime DateOfClaim { get; set; }
         public bool IsValid { get; set; }
+        public Claim()
+        {
+
+        }
 
         public Claim(int id, ClaimType claimType, string description, decimal amount, DateTime dateOfIncident, DateTime dateOfClaim, bool isValid)
         {

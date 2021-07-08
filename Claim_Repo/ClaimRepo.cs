@@ -12,9 +12,8 @@ namespace Claim_Repo
         private Queue<Claim> _claims = new Queue<Claim>();
 
         //Create
-        public void CreateClaim(int id, ClaimType claimType, string description, decimal amount, DateTime dateOfIncident, DateTime dateOfClaim, bool isValid)
+        public void CreateClaim(Claim claim)
         {
-            Claim claim = new Claim(id, claimType, description, amount, dateOfIncident, dateOfClaim, isValid);
             _claims.Enqueue(claim);
         }
         //Read
