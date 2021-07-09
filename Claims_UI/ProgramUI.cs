@@ -11,8 +11,10 @@ namespace Claims_UI
     public class ProgramUI
     {
         private ClaimRepo _claimRepo = new ClaimRepo();
+        int id = 1;
         public void Run()
         {
+            //SeedData();
             Menu();
         }
         public void Menu()
@@ -47,28 +49,45 @@ namespace Claims_UI
         }
         public void SeeAllClaims()
         {
-
+            Console.Clear();
+            Queue<Claim> claims = _claimRepo.ReadClaims();
+            foreach(var claim in claims)
+            {
+                printClaimInfo(claim);
+            
+            }
         }
         public void TakeCareOfNextClaim()
         {
+            Console.Clear();
+            Claim claim = _claimRepo.PeekClaim();
+            printClaimInfo(claim);
+            Console.WriteLine("Do you want to process Claim? Y | N");
+            string processClaim = Console.ReadLine().ToLower();
+            if(processClaim == "y")
+            {
+                _claimRepo.DeleteClaim();
+            }
+            Console.Clear();
 
         }
         public void EnterNewClaim()
         {
-
-            int id = 1;
+            Console.Clear();
             ClaimType claimType = (ClaimType)TypeOfClaim();
+            Console.Clear();
             Console.WriteLine("Description of the claim?");
             string description = Console.ReadLine();
-            Console.WriteLine("\n");
+            Console.Clear();
             Console.WriteLine("Amount of the Claim?");
             decimal amount = Convert.ToDecimal(Console.ReadLine());
+            Console.Clear();
             DateTime dateOfAccident = GetDate("Accident");
             DateTime dateOfClaim = DateTime.Now;
-            bool claimIsValid= ValidClaim(dateOfAccident, dateOfClaim);
-            Claim claim = new Claim(id, claimType, description, amount, dateOfAccident, dateOfClaim, claimIsValid);
+            //bool claimIsValid= ValidClaim(dateOfAccident, dateOfClaim);
+            Claim claim = new Claim(id, claimType, description, amount, dateOfAccident, dateOfClaim);
             _claimRepo.CreateClaim(claim);
-
+            id++;
         }
 
         public int TypeOfClaim()
@@ -99,14 +118,17 @@ namespace Claims_UI
         {
             Console.WriteLine($"Enter the month of the {typeOfDate}");
             int month = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("\n");
             Console.WriteLine($"Enter the day of the {typeOfDate}");
             int day = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("\n");
             Console.WriteLine($"Enter the year of the {typeOfDate}");
             int year = Convert.ToInt32(Console.ReadLine());
             DateTime dateTime = new DateTime(year, month, day);
-            return dateTime;
+            Console.Clear();
+            return dateTime;       
         }
-        public bool ValidClaim(DateTime dateOfAccident, DateTime dateOfClaim)
+        /*public bool ValidClaim(DateTime dateOfAccident, DateTime dateOfClaim)
         {
             double numberOfDaysPasseed = (dateOfClaim - dateOfAccident).TotalDays;
             if(numberOfDaysPasseed <= 30)
@@ -118,5 +140,36 @@ namespace Claims_UI
                 return false;
             }
         }
+        */
+
+        public void printClaimInfo(Claim claim)
+        {
+            Console.WriteLine($"Claim ID: {claim.ID}\n" +
+                                  $"Type of Claim: {claim.ClaimType}\n" +
+                                  $"Description: {claim.Description}\n" +
+                                  $"Amount: {claim.Amount}\n" +
+                                  $"Date Of Accident: {claim.DateOfIncident}\n" +
+                                  $"Date of Claim: {claim.DateOfClaim}\n" +
+                                  $"Is valid: {claim.IsValid}\n");
+        }
+
+        /*public void SeedData()
+        {
+            DateTime dateTime1 = new DateTime(2021, 06, 21);
+            DateTime dateTime2 = new DateTime(2021, 07, 01);
+            DateTime dateTime3 = new DateTime(2021, 05, 01);
+
+            ClaimType one = (ClaimType)1;
+            ClaimType two = (ClaimType)2;
+            ClaimType three = (ClaimType)3;
+
+
+
+            Claim claim = new Claim(1, one, "Auto Accident", 500.00m, dateTime1, DateTime.Now, true);
+            Claim claim1 = new Claim(2, two, "House Caught On Fire", 1000.99m, dateTime2, DateTime.Now, true);
+            Claim claim2 = new Claim(3, three, "Stolen Bike", 20m, dateTime3, DateTime.Now, false);
+
+        }
+        */
     }
 }

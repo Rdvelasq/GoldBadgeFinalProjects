@@ -12,9 +12,8 @@ namespace MenuItem_Repo
         private List<MealItem> _mealItems = new List<MealItem>();
 
         //Create
-        public void CreateMealItem(int number, string name, string description, List<string> ingredients, decimal price)
+        public void CreateMealItem(MealItem mealItem)
         {
-            MealItem mealItem = new MealItem(number, name, description, ingredients, price);
             _mealItems.Add(mealItem);
         }
 

@@ -61,7 +61,8 @@ namespace Komodo_Cafe
             List<string> ingredients = AddIngredients();
             Console.WriteLine("What is the price of the Meal?");
             decimal price = Convert.ToDecimal(Console.ReadLine());
-            _menuItemRepo.CreateMealItem(number, name, description, ingredients, price);
+            MealItem menuItem = new MealItem(number, name, description, ingredients, price);
+            _menuItemRepo.CreateMealItem(menuItem);
         }
         public List<string> AddIngredients()
         {

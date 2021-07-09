@@ -14,20 +14,34 @@ namespace Claim_POCO
         public decimal Amount { get; set; }
         public DateTime DateOfIncident { get; set; }
         public DateTime DateOfClaim { get; set; }
-        public bool IsValid { get; set; }
+        public bool IsValid 
+        {
+            get 
+            {
+                double numberOfDaysPasseed = (DateOfClaim - DateOfIncident).TotalDays;
+                if (numberOfDaysPasseed <= 30)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            } 
+        }
         public Claim()
         {
 
         }
-
-        public Claim(int id, ClaimType claimType, string description, decimal amount, DateTime dateOfIncident, DateTime dateOfClaim, bool isValid)
+        public Claim(int id, ClaimType claimType, string description, decimal amount, DateTime dateOfIncident, DateTime dateOfClaim)
         {
             ID = id;
             ClaimType = claimType;
+            Description = description;
             Amount = amount;
             DateOfIncident = dateOfIncident;
             DateOfClaim = dateOfClaim;
-            IsValid = isValid;
+
         }
     }
 

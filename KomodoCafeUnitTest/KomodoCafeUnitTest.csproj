@@ -55,6 +55,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MenuItem_POCO\MenuItem_POCO.csproj">
+      <Project>{7F34ACAC-A92C-4312-893F-1178E790D787}</Project>
+      <Name>MenuItem_POCO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MenuItem_Repo\MenuItem_Repo.csproj">
+      <Project>{A1231CE5-7E7D-4077-890B-4486D285F3AD}</Project>
+      <Name>MenuItem_Repo</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

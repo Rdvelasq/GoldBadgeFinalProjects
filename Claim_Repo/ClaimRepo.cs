@@ -17,15 +17,17 @@ namespace Claim_Repo
             _claims.Enqueue(claim);
         }
         //Read
-        public Queue<Claim> ReadClaims()
-        {
-            return _claims;
-        }
+        public Queue<Claim> ReadClaims() => _claims;
+       
+
+        //Peek
+        public Claim PeekClaim() => _claims.Peek();
+
 
         //Delete
         public void DeleteClaim()
         {
-            _claims.Dequeue();
+            _claims.Dequeue(); ;
         }
 
         //Helper
