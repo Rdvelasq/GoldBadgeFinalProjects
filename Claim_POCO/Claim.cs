@@ -19,14 +19,8 @@ namespace Claim_POCO
             get 
             {
                 double numberOfDaysPasseed = (DateOfClaim - DateOfIncident).TotalDays;
-                if (numberOfDaysPasseed <= 30)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return (numberOfDaysPasseed <= 30);
+                
             } 
         }
         public Claim()

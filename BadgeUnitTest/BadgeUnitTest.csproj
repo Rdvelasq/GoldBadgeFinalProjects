@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{67C51036-E669-4338-8577-879290B7DCB7}</ProjectGuid>
+    <ProjectGuid>{D66F6840-E1F7-49B1-9552-04E0F35AAC3E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClaimsUnitTest</RootNamespace>
-    <AssemblyName>ClaimsUnitTest</AssemblyName>
+    <RootNamespace>BadgeUnitTest</RootNamespace>
+    <AssemblyName>BadgeUnitTest</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -56,13 +56,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Claim_POCO\Claim_POCO.csproj">
-      <Project>{59693A99-DB69-441A-8B19-E7FD7E3C43AD}</Project>
-      <Name>Claim_POCO</Name>
+    <ProjectReference Include="..\Badge_POCO\Badge_POCO.csproj">
+      <Project>{C8526260-554B-4E54-A2A5-7CF82D3BBBB0}</Project>
+      <Name>Badge_POCO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Claim_Repo\Claim_Repo.csproj">
-      <Project>{EFCD4A00-D673-4FF7-BEFF-969DFC648A42}</Project>
-      <Name>Claim_Repo</Name>
+    <ProjectReference Include="..\Badge_Repo\Badge_Repo.csproj">
+      <Project>{3F338628-CE34-4C78-B51B-3959C12C0A0C}</Project>
+      <Name>Badge_Repo</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
