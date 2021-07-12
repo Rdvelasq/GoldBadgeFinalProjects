@@ -19,15 +19,22 @@ namespace Badge_Repo
             _badges.Add(badge.ID, badge.DoorNames);
             _ListOfBadges.Add(badge);
         }
-        //Add doors to list of doors
-        public void AddDoor(string doorNumber)
-        {
-            _badge.DoorNames.Add(doorNumber);
-        }
-
+       //Read Badge
         public List<Badge> GetListOfBadges()
         {
             return _ListOfBadges;
+        }
+        //Helper Get Badge By Badge Number?
+        public Badge GetBadgeByNumber(int badgeNumber)
+        {
+            foreach (var Badge in _ListOfBadges)
+            {
+                if(Badge.Name == badgeNumber)
+                {
+                    return Badge;
+                }
+            }
+            return null;
         }
 
     }

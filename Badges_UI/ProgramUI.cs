@@ -37,6 +37,7 @@ namespace Badges_UI
                         AddBadge();
                         break;
                     case "2":
+                        Console.Clear();
                         EditBadge();
                         break;
                     case "3":
@@ -79,6 +80,40 @@ namespace Badges_UI
         }
         public void EditBadge()
         {
+            ListAllBadges();
+            Console.WriteLine("Which Badge number would you like to edit?");
+            int BadgeNumber = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            Badge badge =_badgeRepo.GetBadgeByNumber(BadgeNumber);
+            Console.WriteLine($"{badge.Name} has access to: \n");
+            foreach(var door in badge.DoorNames)
+            {
+                Console.WriteLine($"{door} ");
+            }
+            Console.WriteLine("\n");
+            bool keepGoing = true;
+            while (keepGoing)
+            {
+                Console.WriteLine("1) Add Door\n" +
+                              "2) Remove Door\n" +
+                              "3) Exit");
+                string userInput = Console.ReadLine();
+                switch (userInput)
+                {
+                    case "1":
+                        badge.DoorNames.Add(GetDoor());
+                        break;
+                    case "2":
+                        RemoveDoor(badge);
+                        break;
+                    case "3":
+                    keepGoing = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Input");
+                        break;
+                }
+            }
             
         }
         public  void ListAllBadges()
@@ -87,13 +122,13 @@ namespace Badges_UI
             List<Badge> listOfBadges = _badgeRepo.GetListOfBadges();
             foreach (var badge in listOfBadges)
             {
-                Console.WriteLine($"Badge Number:\n{badge.Name}\n");
+                Console.WriteLine($"Badge Number: {badge.Name}\n");
                 Console.WriteLine("Door Number:");
                 foreach(var door in badge.DoorNames)
                 {
                     Console.Write($"{door} ");
                 }
-                Console.WriteLine("\n");
+                Console.WriteLine("\n----------------------------\n");
             }
         }
         public string GetDoor() {
@@ -105,12 +140,27 @@ namespace Badges_UI
         public void SeedData()
         {
             List<string> doorNames = new List<string>() { "A1", "A2", "A3" };
-            Badge badge = new Badge(1, 12345, doorNames);
+            Badge badge = new Badge(2, 12345, doorNames);
             _badgeRepo.Create(badge);
 
             List<string> doorNames2 = new List<string>() { "B2", "A2", "C4" };
-            Badge badge2 = new Badge(2, 7890, doorNames2);
+            Badge badge2 = new Badge(3, 7890, doorNames2);
             _badgeRepo.Create(badge2);
+        }
+
+        public string RemoveDoor(Badge badge)
+        {
+            Console.WriteLine("Which door do you want to remove?");
+            string doorUserWantsToRemove = Console.ReadLine();
+            if (badge.DoorNames.Remove(doorUserWantsToRemove))
+            { 
+                Console.WriteLine("Door was Removed!");
+            }
+            else
+            {
+                Console.WriteLine("Unable to Locate Door!");
+            }
+            return null;
         }
 
     }
