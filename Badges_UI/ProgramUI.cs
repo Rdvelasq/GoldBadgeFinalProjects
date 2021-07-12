@@ -17,7 +17,6 @@ namespace Badges_UI
             SeedData();
             Menu();
         }
-
         public void Menu()
         {
             bool keepGoing = true;
@@ -76,7 +75,6 @@ namespace Badges_UI
             Badge badge = new Badge(id, badgeNumber, doorNumbers);
             _badgeRepo.Create(badge);
             id++;
-
         }
         public void EditBadge()
         {
@@ -96,12 +94,13 @@ namespace Badges_UI
             {
                 Console.WriteLine("1) Add Door\n" +
                               "2) Remove Door\n" +
-                              "3) Exit");
+                              "3) Exit\n");
                 string userInput = Console.ReadLine();
                 switch (userInput)
                 {
                     case "1":
                         badge.DoorNames.Add(GetDoor());
+                        Console.Clear();
                         break;
                     case "2":
                         RemoveDoor(badge);

@@ -2,6 +2,7 @@
 using Badge_Repo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace BadgeUnitTest
 {
@@ -10,16 +11,34 @@ namespace BadgeUnitTest
     {
         private BadgeRepo _badgeRepo = new BadgeRepo();
         [TestMethod]
-        public void Create_BadgeWasCreated_ReturnTrue()
+        public void GetBadgeByNumber_BadgeWasFound_ReturnBadgeObject()
         {
             //Arrange
-          //  Badge badge = new Badge(1, 45893);
+            List<string> doorNumbers = new List<string>() { "A1", "C3" };
+            Badge badge = new Badge(1, 45678, doorNumbers);
+            _badgeRepo.Create(badge);
 
             //Act
-          //  bool result = _badgeRepo.Create(badge, "A3");
+            int badgeNumber = 45678;
+            Badge foundBadge = _badgeRepo.GetBadgeByNumber(badgeNumber);
 
             //Assert
-           // Assert.IsTrue(result);
+            Assert.IsNotNull(foundBadge);
+        }
+        [TestMethod]
+        public void GetBadgeByNumber_BadgeWasNotFound_ReturnNullt()
+        {
+            //Arrange
+            List<string> doorNumbers = new List<string>() { "A1", "C3" };
+            Badge badge = new Badge(1, 45678, doorNumbers);
+            _badgeRepo.Create(badge);
+
+            //Act
+            int badgeNumber = 12345;
+            Badge notFoundBadge = _badgeRepo.GetBadgeByNumber(badgeNumber);
+
+            //Assert
+            Assert.IsNull(notFoundBadge);
         }
     }
 }

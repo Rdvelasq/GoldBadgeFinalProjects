@@ -11,7 +11,6 @@ namespace Badge_Repo
     {
         private Dictionary<int, List<string>> _badges = new Dictionary<int, List<string>>();
         private List<Badge> _ListOfBadges = new List<Badge>();
-        private Badge _badge = new Badge();
 
         //Create Badge
         public void Create(Badge badge)
