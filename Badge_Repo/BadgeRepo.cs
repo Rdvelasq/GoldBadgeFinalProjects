@@ -9,31 +9,29 @@ namespace Badge_Repo
 {
     public class BadgeRepo
     {
-        private Dictionary<int, List<string>> _badges = new Dictionary<int, List<string>>();
-        private List<Badge> _ListOfBadges = new List<Badge>();
+        private Dictionary<int, List<string>> _dictOfBadges = new Dictionary<int, List<string>>();
 
         //Create Badge
         public void Create(Badge badge)
         {
-            _badges.Add(badge.ID, badge.DoorNames);
-            _ListOfBadges.Add(badge);
+            _dictOfBadges.Add(badge.ID, badge.DoorNames);
         }
        //Read Badge
-        public List<Badge> GetListOfBadges()
+        public Dictionary<int, List<string>> GetDictOfBadges()
         {
-            return _ListOfBadges;
+            return _dictOfBadges;
         }
         //Helper Get Badge By Badge Number?
-        public Badge GetBadgeByNumber(int badgeNumber)
+        public KeyValuePair<int, List<string>> GetBadgeByNumber(int badgeNumber)
         {
-            foreach (var Badge in _ListOfBadges)
+            foreach (var kvp in _dictOfBadges)
             {
-                if(Badge.Name == badgeNumber)
+                if (kvp.Key == badgeNumber)
                 {
-                    return Badge;
+                    return kvp;
                 }
             }
-            return null;
+            return default;
         }
 
     }

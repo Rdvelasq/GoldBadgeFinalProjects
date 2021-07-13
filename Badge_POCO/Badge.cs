@@ -9,16 +9,14 @@ namespace Badge_POCO
     public class Badge
     {
         public int ID { get; set; }
-        public int Name { get; set; }
         public List<string> DoorNames { get; set; }
         public Badge()
         {
 
         }
-        public Badge(int id, int name, List<string> doorNames)
+        public Badge(int id,  List<string> doorNames)
         {
             ID = id;
-            Name = name;
             DoorNames = doorNames;
         }
     }
