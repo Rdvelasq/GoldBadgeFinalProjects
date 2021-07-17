@@ -80,9 +80,9 @@ namespace Badges_UI
             Console.WriteLine("Which Badge number would you like to edit?");
             int BadgeNumber = Convert.ToInt32(Console.ReadLine());
             Console.Clear();
-            KeyValuePair<int, List<string>> badge =_badgeRepo.GetBadgeByNumber(BadgeNumber);
-            Console.WriteLine($"{badge.Key} has access to: \n");
-            foreach(var door in badge.Value)
+            Badge badge =_badgeRepo.GetBadgeByNumber(BadgeNumber);
+            Console.WriteLine($"{badge.ID} has access to: \n");
+            foreach(var door in badge.DoorNames)
             {
                 Console.WriteLine($"{door} ");
             }
@@ -97,11 +97,11 @@ namespace Badges_UI
                 switch (userInput)
                 {
                     case "1":
-                        badge.Value.Add(GetDoor());
+                        badge.DoorNames.Add(GetDoor());
                         Console.Clear();
                         break;
                     case "2":
-                        badge.Value.Remove(RemoveDoor(badge.Value));
+                        badge.DoorNames.Remove(RemoveDoor(badge.DoorNames));
                         break;
                     case "3":
                     keepGoing = false;
@@ -129,7 +129,7 @@ namespace Badges_UI
             }
         }
         public string GetDoor() {
-            Console.WriteLine("\nList a door that it needs access to:");
+            Console.WriteLine("List a door that it needs access to:");
             string doorNumber = Console.ReadLine();
             return doorNumber;
         }

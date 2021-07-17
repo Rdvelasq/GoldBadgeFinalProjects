@@ -22,16 +22,18 @@ namespace Badge_Repo
             return _dictOfBadges;
         }
         //Helper Get Badge By Badge Number?
-        public KeyValuePair<int, List<string>> GetBadgeByNumber(int badgeNumber)
+        public Badge GetBadgeByNumber(int badgeNumber)
         {
-            foreach (var kvp in _dictOfBadges)
+            if (_dictOfBadges.ContainsKey(badgeNumber))
             {
-                if (kvp.Key == badgeNumber)
-                {
-                    return kvp;
-                }
+                List<string> doorNames = _dictOfBadges[badgeNumber];
+                Badge badge = new Badge(badgeNumber, doorNames);
+                return badge;
             }
-            return default;
+            else
+            {
+                return null;
+            }       
         }
 
     }

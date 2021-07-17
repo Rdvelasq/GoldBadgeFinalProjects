@@ -15,6 +15,7 @@ namespace MenuItem_Repo
         public void CreateMealItem(MealItem mealItem)
         {
             _mealItems.Add(mealItem);
+            _mealItems.Count();
         }
 
         //Read
