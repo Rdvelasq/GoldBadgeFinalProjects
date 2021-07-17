@@ -98,20 +98,17 @@ namespace Komodo_BBQ
                     switch (userInput)
                     {
                         case "1":
-                            _burgerBoothRepo.AddToTotalCost(burgerBooth.VeggieBurger);
-                            _burgerBoothRepo.AddToTotalTicket();
+                            _burgerBoothRepo.ProcessOrder(burgerBooth.VeggieBurger);
                             employee.BurgerBoothTicket = 0;
                             keepGoing = false;
                             break;
                         case "2":
-                            _burgerBoothRepo.AddToTotalCost(burgerBooth.Hamburger);
-                            _burgerBoothRepo.AddToTotalTicket();
+                            _burgerBoothRepo.ProcessOrder(burgerBooth.Hamburger);
                             employee.BurgerBoothTicket = 0;
                             keepGoing = false;
                             break;
                         case "3":
-                            _burgerBoothRepo.AddToTotalCost(burgerBooth.HotDog);
-                            _burgerBoothRepo.AddToTotalTicket();
+                            _burgerBoothRepo.ProcessOrder(burgerBooth.HotDog);                           
                             employee.BurgerBoothTicket = 0;
                             keepGoing = false;
                             break;
@@ -152,14 +149,12 @@ namespace Komodo_BBQ
                     switch (userInput)
                     {
                         case "1":
-                            _treatBoothRepo.AddToTotalCost(treatBooth.Popcorn);
-                            _treatBoothRepo.AddToTotalTickets();
+                            _treatBoothRepo.ProcessOrder(treatBooth.Popcorn);
                             employee.TreatBoothTicket = 0;
                             keepGoing = false;
                             break;
                         case "2":
-                            _treatBoothRepo.AddToTotalCost(treatBooth.IceCream);
-                            _treatBoothRepo.AddToTotalTickets();
+                            _treatBoothRepo.ProcessOrder(treatBooth.IceCream);
                             employee.TreatBoothTicket = 0;
                             keepGoing = false;
                             break;

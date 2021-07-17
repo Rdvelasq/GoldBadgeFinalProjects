@@ -14,12 +14,9 @@ namespace Treat_Booth_Repo
         {
             return treatBooth;
         }
-        public void AddToTotalCost(decimal userWants)
+        public void ProcessOrder(decimal userWants)
         {
             treatBooth.TotalCost += userWants;
-        }
-        public void AddToTotalTickets()
-        {
             treatBooth.Ticket++;
         }
         public int GetTickets() => treatBooth.Ticket;

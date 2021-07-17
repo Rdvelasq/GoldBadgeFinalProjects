@@ -13,9 +13,10 @@ namespace KomodoCafeUnitTest
         
         [TestMethod]
         public void DeleteMeaItem_NotNull_ReturnTrue()
-        { 
+        {
             //Arrange - create variables we need to test
-            _menuItemRepo.CreateMealItem(1, "Big Mac", "Mouthwatering perfection", null, 4.50m);
+            MealItem mealItem = new MealItem(1, "Big Mac", "Mouthwatering perfection", null, 4.50m);
+            _menuItemRepo.CreateMealItem(mealItem);
             int mealNumberUserDelete = 1;
 
             //Act - use the method and variables 
@@ -28,7 +29,8 @@ namespace KomodoCafeUnitTest
         public void DeleteMealItem_Null_ReturnFalse()
         {
             //Arrange
-            _menuItemRepo.CreateMealItem(1, "Big Mac", "Mouthwatering perfection", null, 4.50m);
+            MealItem mealItem = new MealItem(1, "Big Mac", "Mouthwatering perfection", null, 4.50m);
+            _menuItemRepo.CreateMealItem(mealItem);
             int mealNumberUserDelete = 3;
 
             //Act
@@ -43,30 +45,32 @@ namespace KomodoCafeUnitTest
         public void GetMealItemByNumber_FoundMealItem_ReturnMealItem()
         {
             //Arrgange 
-            _menuItemRepo.CreateMealItem(1, "Big Mac", "Mouthwatering perfection", null, 4.50m);
+            MealItem mealItem = new MealItem(1, "Big Mac", "Mouthwatering perfection", null, 4.50m);
+            _menuItemRepo.CreateMealItem(mealItem);
             int mealNumberID = 1;
 
             //Act
-            MealItem mealItem = _menuItemRepo.GetMealItemByNumber(mealNumberID);
+            MealItem foundMealItem = _menuItemRepo.GetMealItemByNumber(mealNumberID);
 
             //Assert
 
-            Assert.IsNotNull(mealItem);
+            Assert.IsNotNull(foundMealItem);
         }
 
         [TestMethod]
         public void GetMealItemByNumber_DidNotFindMealItem_ReturnNull()
         {
             //Arrgange 
-            _menuItemRepo.CreateMealItem(1, "Big Mac", "Mouthwatering perfection", null, 4.50m);
+            MealItem mealItem = new MealItem(1, "Big Mac", "Mouthwatering perfection", null, 4.50m);
+            _menuItemRepo.CreateMealItem(mealItem);
             int mealNumberID = 5;
 
             //Act
-            MealItem mealItem = _menuItemRepo.GetMealItemByNumber(mealNumberID);
+            MealItem notFoundMealItem = _menuItemRepo.GetMealItemByNumber(mealNumberID);
 
             //Assert
 
-            Assert.IsNull(mealItem);
+            Assert.IsNull(notFoundMealItem);
 
         }
     }

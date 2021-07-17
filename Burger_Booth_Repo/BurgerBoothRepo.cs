@@ -14,12 +14,9 @@ namespace Burger_Booth_Repo
         {
             return _burger;
         }
-        public void AddToTotalCost(decimal userWants)
+        public void ProcessOrder(decimal userWants)
         {
             _burger.TotalCost += userWants;
-        }
-        public void AddToTotalTicket()
-        {
             _burger.Ticket++;
         }
         public int GetTickets() => _burger.Ticket;
